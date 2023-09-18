@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Method</title>
+</head>
+<body>
+    <script>
+        class Shape
+        {
+            paint()
+            {
+                console.info("Paint Shape");
+            }
+        }
+
+        class Circle extends Shape
+        {
+            /*
+                kita bisa menanggil sebuah function yang di deklarasi di parent nya menggunakan kata kunci
+                "super" yang di ikuti tanda titik dan nama function nya. Sebenarnya kata kunci "super" adalah
+                referensi dari parent nya
+            */
+            
+            paint()
+            {
+                super.paint(); // memanggil method paint(), yang berada di parent class
+                console.info("Paint Circle");
+            }
+
+            // kata kunci super tidak hanya bisa mengakses property namun bisa juga mengakses prototype parent
+        }
+
+        const circle = new Circle();
+        circle.paint();
+    </script>
+</body>
+</html>

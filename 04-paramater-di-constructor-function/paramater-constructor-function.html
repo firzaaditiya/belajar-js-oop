@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramater di Constrcutor Function</title>
+</head>
+<body>
+    <script>
+        // menambahkan paramater pada constructor function
+        function Person(firstName, lastName)
+        {
+            this.firstName = firstName; // memberikan nilai dari paramater
+            this.lastName = lastName;
+            this.sayHello = function (name) {
+                            console.info(`Hello ${name}, my name is ${this.firstName}`);
+            };
+        }
+        
+        // mengirimkan paramater
+        const firza = new Person("Firza", "Aditiya");
+        firza.sayHello("Joko");
+        
+        const yuki = new Person("Yuki", "Shifuka");
+        yuki.sayHello("Joko");
+        
+        console.info(firza);
+        console.info(yuki);
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property di Constructor Function</title>
+</head>
+<body>
+    <script>
+        function Person()
+        {
+            // deklarasi property pada constructor function
+            this.firstName = "";
+            this.lastName = "";
+        }
+
+        // membuat object dari Person
+        const firza = new Person();
+        firza.firstName = "Firza";
+        firza.lastName = "Aditiya";
+
+        console.info(firza);
+    </script>
+</body>
+</html>

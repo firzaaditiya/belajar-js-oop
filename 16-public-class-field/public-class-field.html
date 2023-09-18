@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Class Field</title>
+</head>
+<body>
+    <script>
+        /*
+            biasanya kita saat ingin menambahkan field (property yang berisi value), kita bisa 
+            tambahkan di construcutor.
+
+            namun, ada proposal di ES yang mengajukan public class field ditrmpatkan diluar constructor, selevel
+            dengan penempatan method
+
+            proposal ini masih belum final, namun beberapa browser sudah mendukung nya seperti google chrome
+
+            https://github.com/tc39/proposal-class-fields 
+
+            visibility public dan private
+        */
+
+        class Customer
+        {
+            /*
+                public field, ini menempel pada instance
+            */
+            
+            firstName;
+            lastName;
+            balance = 0;
+
+            constructor(firstName, lastName)
+            {
+                this.firstName = firstName;
+                this.lastName = lastName;
+            }
+
+            sayHello()
+            {
+
+            }
+        }
+
+        const firza = new Customer("Firza", "Aditiya");
+        console.info(firza);
+    </script>
+</body>
+</html>

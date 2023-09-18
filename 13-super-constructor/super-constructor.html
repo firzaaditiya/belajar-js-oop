@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Constructor</title>
+</head>
+<body>
+    <script>
+        /*
+            class inheritance sifatnya seperti prototype inheritance.
+
+            bagaimana dengan Constructor inheritance? sebenarnya Constructor inheritance hanyalah
+            melakukan eksekusi Constructor lain dengan tujuan agar property di Constructor lain
+            bisa ditambahkan ke instance object tersebut
+        */
+
+        class Employee
+        {
+            constructor(firstName)
+            {
+                this.firstName = firstName;
+            }
+
+            sayHello(name)
+            {
+                console.info(`Hi ${name}, My Name is Employee ${this.firstName}`);
+            }    
+        }
+
+        /*
+            walaupun class Manager tidak memiliki constructor dia akan mewarisi
+            constructor yang ada pada parent class nya yaitu Employee, jdi apa yg dimiliki
+            oleh constructor parent akan dimiliki oleh child class nya
+        */
+        
+        class Manager extends Employee
+        {
+            /*
+                ketika child class memiliki constructor sendiri, kita wajib memanggil constructor
+                parent nya agar tidak terjadi error, kita bisa menggunakan kata kunci "super"
+            */
+
+            constructor(firstName, lastName)
+            {
+                /*
+                    kita beri paramater firstName, agar property firstName yang ada di parent class
+                    kita beri nilai nya, dan diturunkan property nya ke class child dengan nilai yang dikirimkan
+                    jadi class child akan memiliki property firstName
+                */
+                super(firstName);
+                this.lastName = lastName;
+            }
+
+            sayHello(name)
+            {
+                console.info(`Hi ${name}, My Name is Manager ${this.firstName} ${this.lastName}`);
+            }
+        }
+
+        const firza = new Employee("Firza");
+        firza.sayHello("Yuki");
+        
+        const hanami = new Manager("Hanami", "Tanari");
+        hanami.sayHello("Yuki");
+
+        console.info(firza);
+        console.info(hanami);
+    </script>
+</body>
+</html>

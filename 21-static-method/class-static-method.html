@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Static Method</title>
+</head>
+<body>
+    <script>
+        /*
+            kata kunci static juga bisa kita tambahkan pada method, jadi method akan menjadi
+            milik class iu sendiri bulan prototype
+
+            untuk mengakses nya kita juga menggunakan class nya 
+        */
+
+        class MathUtil
+        {
+            // membuat static method
+            static sum(...numbers)
+            {
+                let total = 0;
+
+                for (const value of numbers) {
+                    total += value;
+                }
+
+                return total;
+            }
+        }
+
+        // mengakses static method
+        const result = MathUtil.sum(1, 1, 1, 1, 1);
+        console.info(result);
+    </script>
+</body>
+</html>

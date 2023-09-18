@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling</title>
+</head>
+<body>
+    <script>
+        /*
+            saat kode program javascript kita terjadi error, terkadang kita tidak ingin program
+            kita berhenti
+
+            di javascript kita bisa menangkap jika terjadi error, kita bisa menggunakan "try catch statement"
+            untuk menangkap error, pada block "try", kita akan mencoba mengakses kode program yang bisa menyebabkan
+            error, dan jika terjadi error, block try akan berhenti dan akan secara otomatis masuk ke block "catch"
+
+            jika tidak terjadi error block "catch" tidak akan di eksekusi
+        */
+
+        /*
+            keyword "finally" 
+
+            kadang kita ingin melakukan sesuatu entah itu terjadi error atau tidak, dalam "try catch" kita bisa
+            menambahkan block "finally"
+
+            block finally ini akan selalu di eksekusi setelah "try catch" selesai, entah terjadi error atau tidak,
+            block "finally" akan selalu di eksekusi
+        */
+
+        class MathUtil
+        {
+            static sum(...numbers)
+            {
+                if (numbers.length === 0) {
+                    /*
+                        const error = new Error("Total paramater harus lebih dari 0");
+                        throw error;
+                    */
+
+                    // melempar error
+                    throw new Error("Total paramater harus lebih dari 0");
+                }
+
+                let total = 0;
+                for (const value of numbers) {
+                    total += value;
+                }
+
+                return total;
+            }
+        }
+
+        // try catch statement
+        try {
+            console.info(MathUtil.sum());
+            console.info("Firza");
+        } catch (error) {
+            /*
+                error adalah variable yang akan menjadi object yang dibuat dari bawaan class error
+            */
+
+            // .message adalah property yang ada pada class error yang berisi pesan error yang di throw
+            // console.info(`Terjadi Error : ${error.message}`);
+            console.error(`Terjadi Error : ${error.message}`);
+        } finally {
+            /*
+                contoh study kasus nya adalah ketika kita membuat program yang terkoneksi database
+                maka kita akan melakukan putus koneksi ketika kita sudah melakukan query dan koneksi
+                database nya harus kita tutup
+            */
+            console.info("Program selesai");
+        }
+
+        console.info("Aditiya");
+
+        /*
+            ada kata kunci "finally" juga bisa digunakan tanpa harus ada "catch"
+            biasanya ini digunakan pada kasus tertentu
+        */
+
+        class Counter
+        {
+            #value = 1;
+
+            next()
+            {
+                // function ini mengembalikan nilai dan setelah nya menambahkan nilai 1 ke properti private "value"
+                try {
+                    return this.#value;
+                } finally {
+                    this.#value++;
+                }
+            }
+        }
+
+        const counter = new Counter();
+        console.info(counter.next());
+        console.info(counter.next());
+        console.info(counter.next());
+        console.info(counter.next());
+        console.info(counter.next());
+    </script>
+</body>
+</html>

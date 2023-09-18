@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter Setter di Class</title>
+</head>
+<body>
+    <script>
+        class Person
+        {
+            constructor(firstName, lastName)
+            {
+                this.firstName = firstName;
+                this.lastName = lastName;
+            }
+
+            // getter
+            get fullName()
+            {
+                return `${this.firstName} ${this.lastName}`;
+            }
+
+            // setter
+            set fullName(value)
+            {
+                const result = value.split(" ");
+                this.firstName = result[0];
+                this.lastName = result[1];
+            }
+
+            get fullNameReal()
+            {
+                return `${this.firstName} ${this.lastName} Ardiansah`;
+            }
+
+            set fullNameReal(value)
+            {
+                const result = value.split(" ");
+                this.firstName = result[0];
+                this.lastName = result[1];
+            }
+        }
+
+        const firza = new Person("Firza", "Aditiya");
+
+        console.info(firza);
+        console.info(firza.fullName);
+        
+        firza.fullName = "firza aditiya";
+        console.info(firza.fullName);
+        console.info(firza.fullNameReal);
+
+        firza.fullNameReal = "Firza Aditiya Ardiansah";
+        console.info(firza.fullNameReal);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method di Class</title>
+</head>
+<body>
+    <script>
+        class Person
+        {
+            constructor(name)
+            {
+                this.name = name;
+                
+                // menambah method ke instance dia akan menempel pada instance bukan prototype
+                /*
+                this.sayHello = function (name) {
+                    console.info(`Hi ${name}, My Name is ${this.name}, Instance`);
+                };
+                */
+            }
+
+            /*
+                direkomendasikan membuat method yang disimpan di prototype
+            */
+            
+            // membuat method di class, ini akan ditambahkan secara otomatis ke prototype
+            sayHello(name)
+            {
+                console.info(`Hi ${name}, My Name is ${this.name}, Prototype`);
+            }
+        }
+
+        const firza = new Person("Firza");
+        firza.sayHello("Kurumi");
+
+        console.info(firza);
+    </script>
+</body>
+</html>

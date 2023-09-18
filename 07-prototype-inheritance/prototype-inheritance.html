@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype Inheritance</title>
+</head>
+<body>
+    <script>
+        function Employee(name)
+        {
+            this.name = name;
+        }
+
+        function Manager(name)
+        {
+            this.name = name;
+        }
+
+        // Pewarisan yang salah, karena akan terjadi replacing atau proto manager akan di timpa oleh proto employee
+        // Manager.prototype = Employee.prototype; SALAH
+
+        // inheritance yang benar karena mengacu pada object prototype Employee
+        Manager.prototype = Object.create(Employee.prototype);
+
+        Manager.prototype.sayHello = function(name) {
+            console.info(`Hello ${name}, My Name is Manager ${this.name}`);
+        };
+
+        Employee.prototype.sayHello = function(name) {
+            console.info(`Hello ${name}, My Name is Employee ${this.name}`);
+        };
+
+        const employee = new Employee("Yuki");
+        employee.sayHello("Joko");
+
+        const manager = new Manager("Firza");
+        manager.sayHello("Ucup");
+
+        console.info(employee);
+        console.info(manager);
+    </script>
+</body>
+</html>

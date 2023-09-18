@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+</head>
+<body>
+    <script>
+        function Person(firstName, lastName)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.sayHello = function (name) {
+                console.info(`Hello ${name}, My Name is ${this.firstName}`);
+            };
+        }
+
+        /*
+            Menambahkan properti ke prototype milik constructor Person
+        */
+        Person.prototype.sayGoodBye = function () {
+            console.info("Good Bye");
+        };
+
+        Person.prototype.run = function () {
+            console.info(`${this.firstName} is running`);
+        };
+
+        const firza = new Person("Firza", "Aditiya");
+        console.info(firza);
+
+        /*
+            jika di timpa dengan function yang di assign ke object maka function ini akan dieksesuki terlebih dahulu
+            karena siapa yang dibaca atau ditemukan pertama maka dia yg akan di eksekusi
+        */
+        // menambahkan sebuah function baru ke object firza
+        firza.sayGoodBye = function () {
+            console.info("Sampai Jumpa");
+        };
+
+        firza.sayGoodBye();
+        firza.run();
+
+        /*
+            cara kerja prototype
+
+            ketika mengakses property di object instance, pertama akan di cek apakah
+            di object terdapat property tersebut atau tidak, jika tidak maka akan di cek
+            di prototype nya __proto__ , jika msh tdk ada akan di cek di __proto__ yg lebih
+            tinggi sampai berakhir ke "Object Prototype"
+        */
+    </script>
+</body>
+</html>

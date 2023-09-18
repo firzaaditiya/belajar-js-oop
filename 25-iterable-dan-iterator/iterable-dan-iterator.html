@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterable dan Iterator</title>
+</head>
+<body>
+    <script>
+        /*
+            salah satu fitur baru dari ES6 (ECMScript 6) adalah iterable
+
+            iterable adalah spesial object yang memiliki standarisasi, dengan mengikuti standarisasi iterable,
+            maka secara otomatis kita bisa melakukan iterasi terhadap data tersebut dengan menggunkan for...of
+
+            jadi apapun yang bisa di iterasi dengan perulangan (for of), itu harus mengikuti standar iterable
+            contoh yang sudah mengikuti standarisasi iterable adalah string, array, object dan lain lain
+
+            jika kita mengikuti kontrak iterable, maka object yang kita buat bisa dilakukan iterasi menggunakan
+            (for of)
+
+            setiap kita melakukan perulangan, maka object iterator akan dibuat, hal ini menjadi aman jika
+            kita melakukan iterasi berulang-ulang, karen iterator baru akan dibuat terus menerus
+        */
+
+        /*
+            membuat counter dimana kita akan mengatur minimal dan maksimal nya, lalu kita akan melakukan iterasi
+            sampai mendekati counter maksimalnya
+
+            kita akan coba buat tapi mengikuti kontrak iterable, iterator dan iteratorResult
+        */
+
+        class CounterIteratorResult
+        {
+            constructor(value, done)
+            {
+                this.value = value;
+                this.done = done;
+            }
+        }
+
+        class CounterIterator
+        {
+            constructor(valueMin, valueMax)
+            {
+                this.valueMin = valueMin;
+                this.valueMax = valueMax;
+            }
+
+            // implementasi Iterator
+            next()
+            {
+                try {
+                    if (this.valueMin > this.valueMax) {
+                        // ketika value minimal sudah lebih besar atau melewati dari valueMax maka loop akan berhenti
+                        return new CounterIteratorResult(this.valueMin, true);
+                    } else {
+                        // ketika value minimal belum lebih besar dari valueMax maka loop akan tetap berjalan
+                        return new CounterIteratorResult(this.valueMin, false);
+                    }
+                } finally {
+                    // ini akan selalu di eksekusi karena counter selalu bertambah 1
+                    this.valueMin++;
+                }
+            }
+        }
+
+        // membuat class Counter yang sesuai dengan kontrak iterable
+        class CounterIterable
+        {
+            constructor(valueMin, valueMax)
+            {
+                this.valueMin = valueMin;
+                this.valueMax = valueMax;
+            }
+
+            // method yang terkontrak dalam iterable
+            [Symbol.iterator]()
+            {
+                return new CounterIterator(this.valueMin, this.valueMax);
+            }
+        }
+
+        /*
+            sekarang kita bisa menggunakan perulangn for of untuk object padahal object tidak iterable, namun karena
+            kita sudah implementasi kontrak iterable dan iterator maka kita bisa menggunakan for of
+        */
+
+        const counter = new CounterIterable(1, 10);
+        console.info(counter);
+        for (const value of counter) {
+            console.info(value);
+        }
+    </script>
+</body>
+</html>

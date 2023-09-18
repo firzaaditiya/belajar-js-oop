@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Inheritance</title>
+</head>
+<body>
+    <script>
+        class Employee
+        {
+            sayHello(name)
+            {
+                console.info(`Hi ${name}, My Name is Employee ${this.name}`);
+            }
+        }
+
+        /*
+            untuk mewarisi suatu class kita menggunakan kata kunci "extends"
+            jadi Class Manager akan mewarisi prototype dari class Employee
+        */
+        class Manager extends Employee
+        {
+            sayHello(name)
+            {
+                console.info(`Hi ${name}, My Name is Manager ${this.name}`);
+            }
+        }
+
+        const kurumi = new Employee();
+        kurumi.name = "Kurumi";
+        kurumi.sayHello("Yuki");
+
+        const firza = new Manager();
+        firza.name = "Firza";
+        firza.sayHello("Yuki");
+
+        console.info(kurumi);
+        console.info(firza);
+    </script>
+</body>
+</html>
